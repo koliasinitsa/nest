@@ -1,10 +1,10 @@
-import { Body, Controller, Get, HttpCode, Param, Redirect, Post } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, Param, Redirect, Post, Put } from "@nestjs/common";
 import { TaskService } from "./task.service";
 
 
 @Controller('task')
 export class TaskController {
-
+ 
     constructor(
         private taskService: TaskService
     ){}
@@ -20,6 +20,11 @@ export class TaskController {
 
     @Post()
     createTask(@Body('task') task: string): ITask {
+        return this.taskService.createTask(task);
+    }
+
+    @Put()
+    putTask(@Body('task') task: string): ITask {
         return this.taskService.createTask(task);
     }
 }
